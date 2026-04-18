@@ -2,85 +2,287 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Reality Check</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glavas Solutions | Reality Check</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      background: #0f0f0f;
-      color: white;
+      background: #0b0b0b;
+      color: #ffffff;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      padding: 24px;
     }
 
     .card {
-      background: #1c1c1c;
-      padding: 30px;
-      border-radius: 12px;
-      width: 350px;
+      width: 100%;
+      max-width: 420px;
+      background: #151515;
+      border: 1px solid #242424;
+      border-radius: 18px;
+      padding: 32px 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
       text-align: center;
+    }
+
+    .brand {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #8f8f8f;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0 0 10px 0;
+      font-size: 32px;
+      line-height: 1.1;
+      color: #ffffff;
+    }
+
+    .subtitle {
+      margin: 0 0 26px 0;
+      color: #b5b5b5;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .field {
+      text-align: left;
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #d5d5d5;
+      font-weight: bold;
     }
 
     input {
       width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border-radius: 6px;
-      border: none;
+      padding: 14px 14px;
+      border-radius: 10px;
+      border: 1px solid #2d2d2d;
+      background: #0f0f0f;
+      color: #ffffff;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #34ff88;
+      box-shadow: 0 0 0 3px rgba(52, 255, 136, 0.12);
     }
 
     button {
       width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      background: #00c853;
+      padding: 14px;
+      margin-top: 6px;
+      background: linear-gradient(90deg, #1fff72, #0fd35a);
       border: none;
-      border-radius: 6px;
-      color: white;
+      border-radius: 10px;
+      color: #07150b;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    button:hover {
+      opacity: 0.96;
+      transform: translateY(-1px);
     }
 
     .result {
-      margin-top: 20px;
-      font-size: 18px;
+      margin-top: 24px;
+      padding: 18px;
+      border-radius: 12px;
+      font-size: 20px;
+      font-weight: bold;
+      display: none;
+      line-height: 1.4;
+    }
+
+    .result.good {
+      display: block;
+      background: rgba(31, 255, 114, 0.08);
+      border: 1px solid rgba(31, 255, 114, 0.22);
+      color: #4dff9b;
+    }
+
+    .result.danger {
+      display: block;
+      background: rgba(255, 82, 82, 0.08);
+      border: 1px solid rgba(255, 82, 82, 0.22);
+      color: #ff7070;
     }
 
     .paywall {
-      margin-top: 20px;
+      margin-top: 18px;
+      padding: 20px 18px;
+      border-radius: 14px;
+      background: #101010;
+      border: 1px solid #272727;
       display: none;
+      text-align: left;
     }
 
-    .danger {
-      color: #ff5252;
+    .paywall.show {
+      display: block;
     }
 
-    .good {
-      color: #00e676;
+    .paywall h2 {
+      margin: 0 0 10px 0;
+      font-size: 20px;
+      line-height: 1.3;
+      color: #ffffff;
+    }
+
+    .paywall p {
+      margin: 0 0 14px 0;
+      color: #c4c4c4;
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    .bullets {
+      margin: 0 0 18px 0;
+      padding-left: 18px;
+      color: #e6e6e6;
+    }
+
+    .bullets li {
+      margin-bottom: 8px;
+      line-height: 1.45;
+    }
+
+    .price-box {
+      background: #171717;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .price {
+      font-size: 28px;
+      font-weight: bold;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .price-sub {
+      font-size: 14px;
+      color: #a9a9a9;
+    }
+
+    .pay-link {
+      text-decoration: none;
+      display: block;
+    }
+
+    .pay-note {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #8f8f8f;
+      text-align: center;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      font-size: 12px;
+      color: #7e7e7e;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 24px 18px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .subtitle {
+        font-size: 15px;
+      }
     }
   </style>
 </head>
-
 <body>
   <div class="card">
-    <h2>💸 Reality Check</h2>
-    <p>Weißt du wirklich, wie viel dir bleibt?</p>
+    <div class="brand">Glavas Solutions</div>
+    <h1>Reality Check</h1>
+    <p class="subtitle">
+      Weißt du wirklich, wie viel dir am Monatsende bleibt?
+    </p>
 
-    <input id="income" type="number" placeholder="Monatliche Einnahmen (€)" />
-    <input id="costs" type="number" placeholder="Fixkosten (€)" />
-    <input id="debt" type="number" placeholder="Schulden / Raten (€)" />
+    <div class="field">
+      <label for="income">Monatliche Einnahmen (€)</label>
+      <input id="income" type="number" inputmode="decimal" placeholder="z. B. 2500" />
+    </div>
+
+    <div class="field">
+      <label for="costs">Fixkosten (€)</label>
+      <input id="costs" type="number" inputmode="decimal" placeholder="z. B. 1400" />
+    </div>
+
+    <div class="field">
+      <label for="debt">Schulden / Raten (€)</label>
+      <input id="debt" type="number" inputmode="decimal" placeholder="z. B. 350" />
+    </div>
 
     <button onclick="analyze()">Jetzt analysieren</button>
 
     <div id="result" class="result"></div>
 
     <div id="paywall" class="paywall">
-      <p>🔒 Detailanalyse freischalten</p>
-      <a href="https://www.paypal.com/paypalme/whitedb/5" target="_blank">
-        <button>5€ bezahlen</button>
+      <h2>🔒 Deine echte Analyse ist noch gesperrt</h2>
+      <p>
+        Du siehst jetzt nur das nackte Ergebnis. Die eigentliche Frage ist:
+        <strong>Warum fehlt dir Geld — und wie schlimm ist es wirklich?</strong>
+      </p>
+
+      <ul class="bullets">
+        <li>Fixkosten-Realität auf einen Blick</li>
+        <li>Wie stark dich Raten und laufende Belastungen drücken</li>
+        <li>Was dir wirklich übrig bleibt</li>
+      </ul>
+
+      <div class="price-box">
+        <div class="price">5€</div>
+        <div class="price-sub">einmalig freischalten</div>
+      </div>
+
+      <a
+        class="pay-link"
+        href="https://www.paypal.com/paypalme/whitedb/5"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <button>🔓 Jetzt für 5€ freischalten</button>
       </a>
+
+      <div class="pay-note">
+        Sichere Zahlung über PayPal
+      </div>
+    </div>
+
+    <div class="footer-note">
+      Dieses Tool zeigt dir eine schnelle finanzielle Realitätseinschätzung.
+      Es ersetzt keine Steuer- oder Finanzberatung.
     </div>
   </div>
 
@@ -94,15 +296,30 @@
       const resultDiv = document.getElementById("result");
       const paywall = document.getElementById("paywall");
 
-      if (result < 0) {
-        resultDiv.innerHTML = `❌ Du verlierst ${Math.abs(result)}€ pro Monat`;
-        resultDiv.className = "result danger";
-      } else {
-        resultDiv.innerHTML = `✅ Dir bleiben ${result}€ übrig`;
-        resultDiv.className = "result good";
+      resultDiv.className = "result";
+      paywall.classList.remove("show");
+
+      if (income <= 0) {
+        resultDiv.textContent = "Bitte gib zuerst deine monatlichen Einnahmen ein.";
+        resultDiv.classList.add("danger");
+        return;
       }
 
-      paywall.style.display = "block";
+      if (result < 0) {
+        resultDiv.innerHTML = `❌ Du verlierst <strong>${Math.abs(result).toFixed(2)}€</strong> pro Monat`;
+      } else if (result === 0) {
+        resultDiv.innerHTML = `⚠️ Dir bleibt aktuell genau <strong>0,00€</strong> übrig`;
+      } else {
+        resultDiv.innerHTML = `✅ Dir bleiben aktuell <strong>${result.toFixed(2)}€</strong> übrig`;
+      }
+
+      if (result < 0) {
+        resultDiv.classList.add("danger");
+      } else {
+        resultDiv.classList.add("good");
+      }
+
+      paywall.classList.add("show");
     }
   </script>
 </body>
