@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reality Check</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f0f0f;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: #1c1c1c;
+      padding: 30px;
+      border-radius: 12px;
+      width: 350px;
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background: #00c853;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .paywall {
+      margin-top: 20px;
+      display: none;
+    }
+
+    .danger {
+      color: #ff5252;
+    }
+
+    .good {
+      color: #00e676;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h2>💸 Reality Check</h2>
+    <p>Weißt du wirklich, wie viel dir bleibt?</p>
+
+    <input id="income" type="number" placeholder="Monatliche Einnahmen (€)" />
+    <input id="costs" type="number" placeholder="Fixkosten (€)" />
+    <input id="debt" type="number" placeholder="Schulden / Raten (€)" />
+
+    <button onclick="analyze()">Jetzt analysieren</button>
+
+    <div id="result" class="result"></div>
+
+    <div id="paywall" class="paywall">
+      <p>🔒 Detailanalyse freischalten</p>
+      <a href="https://www.paypal.com/paypalme/whitedb/5" target="_blank">
+        <button>5€ bezahlen</button>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function analyze() {
+      const income = parseFloat(document.getElementById("income").value) || 0;
+      const costs = parseFloat(document.getElementById("costs").value) || 0;
+      const debt = parseFloat(document.getElementById("debt").value) || 0;
+
+      const result = income - costs - debt;
+      const resultDiv = document.getElementById("result");
+      const paywall = document.getElementById("paywall");
+
+      if (result < 0) {
+        resultDiv.innerHTML = `❌ Du verlierst ${Math.abs(result)}€ pro Monat`;
+        resultDiv.className = "result danger";
+      } else {
+        resultDiv.innerHTML = `✅ Dir bleiben ${result}€ übrig`;
+        resultDiv.className = "result good";
+      }
+
+      paywall.style.display = "block";
+    }
+  </script>
+</body>
+</html>
