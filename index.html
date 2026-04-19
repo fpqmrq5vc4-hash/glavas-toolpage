@@ -3,426 +3,483 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Glavas Solutions | Reality Check</title>
-
+  <title>Glavas Solutions – Digitale Lösungen für kleine Unternehmen</title>
   <style>
-    * {
-      box-sizing: border-box;
+    :root{
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --line:#e5e7eb;
+      --accent:#111827;
+      --accent-2:#374151;
+      --soft:#f3f4f6;
+      --radius:18px;
+      --shadow:0 10px 30px rgba(0,0,0,0.06);
+      --max:1100px;
     }
 
-    :root {
-      --bg: #080808;
-      --card: #141414;
-      --card-border: #262626;
-      --input-bg: #101010;
-      --input-border: #353535;
-      --text: #ffffff;
-      --muted: #bdbdbd;
-      --soft: #8f8f8f;
-      --green: #29ff72;
-      --green-dark: #12c953;
-      --red: #ff6f6f;
-      --red-soft: rgba(255, 111, 111, 0.1);
-      --green-soft: rgba(41, 255, 114, 0.1);
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      min-height: 100vh;
-      padding: 24px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background:
-        radial-gradient(circle at top, rgba(41, 255, 114, 0.08), transparent 30%),
-        radial-gradient(circle at bottom, rgba(255, 170, 0, 0.06), transparent 28%),
-        var(--bg);
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
       color: var(--text);
-      font-family: Arial, sans-serif;
+      line-height: 1.6;
     }
 
-    .card {
-      width: 100%;
-      max-width: 450px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      background-color: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 32px 24px 24px;
-      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
-    }
-
-    .brand {
-      text-align: center;
-      font-size: 12px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #d6d6d6;
-      margin-bottom: 14px;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 32px;
-      line-height: 1.1;
-      margin: 0 0 14px 0;
-    }
-
-    .subtitle {
-      margin: 0 auto 26px;
-      max-width: 360px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.5;
-    }
-
-    .field {
-      margin-bottom: 16px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 14px;
-      font-weight: bold;
-      color: #f0f0f0;
-    }
-
-    input {
-      width: 100%;
-      padding: 15px 16px;
-      border-radius: 12px;
-      border: 1px solid var(--input-border);
-      background: var(--input-bg);
-      color: var(--text);
-      font-size: 16px;
-      outline: none;
-      transition: 0.15s ease;
-    }
-
-    input::placeholder {
-      color: #8a8a8a;
-    }
-
-    input:focus {
-      border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(41, 255, 114, 0.12);
-    }
-
-    .cta-button {
-      width: 100%;
-      border: none;
-      border-radius: 12px;
-      padding: 15px;
-      margin-top: 4px;
-      background: linear-gradient(90deg, var(--green), var(--green-dark));
-      color: #07140b;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform 0.15s ease, opacity 0.15s ease;
-    }
-
-    .cta-button:hover {
-      transform: translateY(-1px);
-      opacity: 0.97;
-    }
-
-    .micro-proof {
-      margin-top: 10px;
-      text-align: center;
-      font-size: 13px;
-      color: var(--soft);
-    }
-
-    .result {
-      display: none;
-      margin-top: 22px;
-      padding: 18px 16px;
-      border-radius: 14px;
-      font-size: 21px;
-      font-weight: bold;
-      line-height: 1.45;
-    }
-
-    .result.show {
-      display: block;
-    }
-
-    .result.danger {
-      background: var(--red-soft);
-      border: 1px solid rgba(255, 111, 111, 0.2);
-      color: var(--red);
-    }
-
-    .result.good {
-      background: var(--green-soft);
-      border: 1px solid rgba(41, 255, 114, 0.2);
-      color: #65ff9f;
-    }
-
-    .year-loss {
-      display: block;
-      margin-top: 10px;
-      font-size: 14px;
-      font-weight: normal;
-      color: #ffb2b2;
-    }
-
-    .year-gain {
-      display: block;
-      margin-top: 10px;
-      font-size: 14px;
-      font-weight: normal;
-      color: #b7ffd0;
-    }
-
-    .paywall {
-      display: none;
-      margin-top: 18px;
-      padding: 20px 18px;
-      border-radius: 16px;
-      background: #101010;
-      border: 1px solid #272727;
-    }
-
-    .paywall.show {
-      display: block;
-    }
-
-    .paywall h2 {
-      margin: 0 0 12px 0;
-      font-size: 22px;
-      line-height: 1.3;
-      color: #fff;
-    }
-
-    .paywall p {
-      margin: 0 0 14px 0;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.55;
-    }
-
-    .warning-text {
-      margin: 0 0 16px 0;
-      color: #ff8f8f;
-      font-weight: bold;
-      line-height: 1.5;
-    }
-
-    .bullets {
-      margin: 0 0 18px 0;
-      padding-left: 20px;
-      color: #ececec;
-    }
-
-    .bullets li {
-      margin-bottom: 8px;
-      line-height: 1.45;
-    }
-
-    .price-box {
-      text-align: center;
-      padding: 16px;
-      background: #171717;
-      border: 1px solid #2b2b2b;
-      border-radius: 14px;
-      margin-bottom: 14px;
-    }
-
-    .price {
-      font-size: 30px;
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-
-    .price-sub {
-      font-size: 14px;
-      color: #a8a8a8;
-    }
-
-    .pay-link {
-      display: block;
+    a {
+      color: inherit;
       text-decoration: none;
     }
 
-    .pay-button {
-      width: 100%;
-      border: none;
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(246,247,251,0.88);
+      border-bottom: 1px solid rgba(229,231,235,0.9);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 72px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 40px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--accent-2);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 14px;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 2.3vw, 2.2rem);
+    }
+
+    h3 {
+      font-size: 1.15rem;
+    }
+
+    p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 18px;
       border-radius: 12px;
-      padding: 15px;
-      background: linear-gradient(90deg, var(--green), var(--green-dark));
-      color: #07140b;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
+      font-weight: 700;
+      transition: transform 0.15s ease;
     }
 
-    .pay-note {
-      margin-top: 12px;
-      text-align: center;
-      font-size: 13px;
-      color: var(--soft);
+    .btn:hover {
+      transform: translateY(-1px);
     }
 
-    .footer-note {
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: var(--soft);
+      color: var(--accent);
+      border: 1px solid var(--line);
+    }
+
+    .hero-side {
+      padding: 28px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .mini-box {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .mini-box strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent);
+    }
+
+    section {
+      padding: 18px 0 22px;
+    }
+
+    .section-head {
+      margin-bottom: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .service-card,
+    .portfolio-card,
+    .contact-card,
+    .about-card {
+      padding: 24px;
+    }
+
+    ul {
+      margin: 14px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .portfolio-card .tag {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent-2);
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+    }
+
+    .portfolio-card p strong {
+      color: var(--accent);
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
       margin-top: 18px;
-      text-align: center;
-      font-size: 12px;
-      color: #7f7f7f;
-      line-height: 1.5;
     }
 
-    @media (max-width: 480px) {
-      body {
-        padding: 14px;
+    .contact-item {
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      color: var(--accent-2);
+      font-weight: 700;
+    }
+
+    footer {
+      padding: 36px 0 60px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
       }
 
-      .card {
-        padding: 24px 18px 20px;
+      .hero {
+        padding-top: 42px;
       }
 
-      h1 {
-        font-size: 28px;
+      .hero-card,
+      .hero-side,
+      .service-card,
+      .portfolio-card,
+      .contact-card,
+      .about-card {
+        padding: 22px;
       }
 
-      .subtitle {
-        font-size: 15px;
-      }
-
-      .result {
-        font-size: 19px;
-      }
-
-      .paywall h2 {
-        font-size: 20px;
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
       }
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="brand">Glavas Solutions</div>
-
-    <h1>Reality Check</h1>
-
-    <p class="subtitle">
-      Viele denken, sie kommen klar – bis sie sehen, wie viel wirklich fehlt.
-    </p>
-
-    <div class="field">
-      <label for="income">Monatliche Einnahmen (€)</label>
-      <input id="income" type="number" inputmode="decimal" placeholder="z. B. 2500" />
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">Glavas Solutions</div>
+      <nav class="nav-links">
+        <a href="#about">Über mich</a>
+        <a href="#services">Leistungen</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Kontakt</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="field">
-      <label for="costs">Fixkosten (€)</label>
-      <input id="costs" type="number" inputmode="decimal" placeholder="z. B. 1400" />
-    </div>
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="card hero-card">
+          <span class="eyebrow">Digitale Lösungen für kleine Unternehmen</span>
+          <h1>Webseiten, IT-Fixes und einfache Systeme – klar, schnell und ohne Technik-Chaos.</h1>
+          <p>
+            Ich unterstütze Selbstständige und kleine Unternehmen dabei, technische Probleme zu lösen,
+            online professioneller aufzutreten und mehr Struktur in digitale Abläufe zu bringen.
+          </p>
+          <p>
+            Mein Fokus liegt auf verständlichen, pragmatischen Lösungen, die im Alltag wirklich helfen.
+          </p>
 
-    <div class="field">
-      <label for="debt">Schulden / Raten (€)</label>
-      <input id="debt" type="number" inputmode="decimal" placeholder="z. B. 350" />
-    </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Jetzt anfragen</a>
+            <a class="btn btn-secondary" href="#portfolio">Portfolio ansehen</a>
+          </div>
+        </div>
 
-    <button class="cta-button" onclick="analyze()">Realität anzeigen</button>
-
-    <div class="micro-proof">
-      Schneller Finanz-Check in wenigen Sekunden
-    </div>
-
-    <div id="result" class="result"></div>
-
-    <div id="paywall" class="paywall">
-      <h2>🔒 Du verlierst Geld – aber weißt nicht warum</h2>
-
-      <p>
-        Die meisten merken zu spät, wie viel sie wirklich jeden Monat verlieren.
-      </p>
-
-      <p class="warning-text">
-        ⚠️ Die meisten verlieren mehrere hundert Euro pro Monat, ohne es zu merken.
-      </p>
-
-      <ul class="bullets">
-        <li>Fixkosten-Realität auf einen Blick</li>
-        <li>Wie stark dich Raten und laufende Belastungen drücken</li>
-        <li>Was dir wirklich übrig bleibt</li>
-      </ul>
-
-      <div class="price-box">
-        <div class="price">5€</div>
-        <div class="price-sub">einmalig freischalten</div>
+        <aside class="card hero-side">
+          <div class="mini-box">
+            <strong>IT-Fixes</strong>
+            Kleine technische Probleme schnell und unkompliziert lösen.
+          </div>
+          <div class="mini-box">
+            <strong>Webseiten</strong>
+            Einfache, klare Seiten für lokale Unternehmen und Selbstständige.
+          </div>
+          <div class="mini-box">
+            <strong>Business-Struktur</strong>
+            Mehr Übersicht bei Anfragen, Abläufen und digitalen Prozessen.
+          </div>
+        </aside>
       </div>
+    </section>
 
-      <a
-        class="pay-link"
-        href="https://www.paypal.com/paypalme/whitedb/5"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <button class="pay-button">🔓 Jetzt für 5€ freischalten</button>
-      </a>
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2>Über mich</h2>
+          <p>Wer ich bin und wie ich arbeite.</p>
+        </div>
 
-      <div class="pay-note">
-        Sichere Zahlung über PayPal
+        <div class="card about-card">
+          <p>
+            Ich unterstütze kleine Unternehmen und Selbstständige dabei, technische Probleme zu lösen,
+            einfache Webseiten umzusetzen und mehr Struktur in digitale Abläufe zu bringen.
+          </p>
+          <p>
+            Dabei geht es mir nicht um komplizierte Technik oder unnötig große Lösungen,
+            sondern um klare Ergebnisse: besser erreichbar sein, professioneller wirken und einfacher arbeiten.
+          </p>
+        </div>
       </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <h2>Leistungen</h2>
+          <p>Drei klare Bereiche, in denen ich Unternehmen direkt unterstützen kann.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card service-card">
+            <h3>IT-Fixes</h3>
+            <p>Ich behebe kleine technische Probleme schnell und unkompliziert.</p>
+            <ul>
+              <li>Formulare funktionieren nicht</li>
+              <li>E-Mail-Probleme</li>
+              <li>kleine Fehler auf Webseiten</li>
+              <li>technische Korrekturen</li>
+            </ul>
+          </article>
+
+          <article class="card service-card">
+            <h3>Webseiten</h3>
+            <p>Ich erstelle einfache, klare Webseiten für kleine Unternehmen und lokale Dienstleister.</p>
+            <ul>
+              <li>professioneller erster Eindruck</li>
+              <li>mobil optimiert</li>
+              <li>klare Kontaktmöglichkeit</li>
+              <li>verständliche Struktur</li>
+            </ul>
+          </article>
+
+          <article class="card service-card">
+            <h3>Einfache Systeme</h3>
+            <p>Ich helfe dabei, mehr Struktur in Anfragen, Abläufe und Business-Prozesse zu bringen.</p>
+            <ul>
+              <li>mehr Übersicht</li>
+              <li>weniger Chaos</li>
+              <li>einfachere digitale Abläufe</li>
+              <li>praxisnahe Lösungen</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="container">
+        <div class="section-head">
+          <h2>Portfolio / Beispielprojekte</h2>
+          <p>Beispielhafte Demo-Projekte, um zu zeigen, wie eine Lösung für verschiedene Branchen aussehen kann.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card portfolio-card">
+            <span class="tag">Friseur Demo</span>
+            <h3>Website für lokalen Friseursalon</h3>
+            <p><strong>Problem:</strong> Keine klare Online-Präsenz, Kunden finden zu wenig Informationen.</p>
+            <p><strong>Lösung:</strong> Eine einfache, mobile Website mit Leistungen, Kontakt und schneller Terminmöglichkeit.</p>
+            <p><strong>Nutzen:</strong> Bessere Erreichbarkeit, professioneller Auftritt und weniger Hürden für neue Kunden.</p>
+          </article>
+
+          <article class="card portfolio-card">
+            <span class="tag">KFZ Demo</span>
+            <h3>Website für KFZ-Werkstatt</h3>
+            <p><strong>Problem:</strong> Leistungen und Kontaktmöglichkeiten sind online nicht klar sichtbar.</p>
+            <p><strong>Lösung:</strong> Strukturierte Website mit Services, Anfragebereich und seriösem Gesamtauftritt.</p>
+            <p><strong>Nutzen:</strong> Mehr Vertrauen, klarere Kommunikation und bessere Sichtbarkeit für Interessenten.</p>
+          </article>
+
+          <article class="card portfolio-card">
+            <span class="tag">Reinigungs Demo</span>
+            <h3>Website für Reinigungsservice</h3>
+            <p><strong>Problem:</strong> Keine einfache Möglichkeit, Leistungen schnell online zu verstehen.</p>
+            <p><strong>Lösung:</strong> Klare Service-Seite mit Angebotsübersicht, Kontakt und einfacher Anfrageoption.</p>
+            <p><strong>Nutzen:</strong> Schnellere Kontaktaufnahme, mehr Klarheit und professioneller Eindruck.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <h2>Warum mit mir</h2>
+          <p>Einfach, verständlich und lösungsorientiert.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card service-card">
+            <ul>
+              <li>direkte Kommunikation</li>
+              <li>verständliche Lösungen statt Fachsprache</li>
+              <li>Fokus auf kleine Unternehmen</li>
+              <li>pragmatisch und umsetzungsorientiert</li>
+            </ul>
+          </div>
+
+          <div class="card service-card">
+            <ul>
+              <li>keine unnötig komplizierten Tools</li>
+              <li>klare Struktur statt Chaos</li>
+              <li>schnelle Einschätzung</li>
+              <li>Lösungen mit echtem Alltagsnutzen</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2>Kontakt</h2>
+          <p>Du brauchst Unterstützung bei Website, Technik oder Struktur? Dann schreib mir direkt.</p>
+        </div>
+
+        <div class="card contact-card">
+          <p>
+            Ich schaue mir kurz an, was du brauchst, und melde mich mit einer klaren Einschätzung zurück.
+          </p>
+
+          <div class="contact-list">
+            <div class="contact-item">E-Mail:support@glavas-solutions</div>
+            <div class="contact-item">WhatsApp / Telefon: +43 660 503 504</div>
+            <div class="contact-item">Standort: Niederösterreich / remote möglich</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Glavas Solutions – Digitale Lösungen für kleine Unternehmen
     </div>
-
-    <div class="footer-note">
-      Dieses Tool zeigt dir eine schnelle finanzielle Realitätseinschätzung.
-      Es ersetzt keine Steuer-, Schulden- oder Finanzberatung.
-    </div>
-  </div>
-
-  <script>
-    function analyze() {
-      const income = parseFloat(document.getElementById("income").value) || 0;
-      const costs = parseFloat(document.getElementById("costs").value) || 0;
-      const debt = parseFloat(document.getElementById("debt").value) || 0;
-
-      const result = income - costs - debt;
-      const resultDiv = document.getElementById("result");
-      const paywall = document.getElementById("paywall");
-
-      resultDiv.className = "result";
-      resultDiv.innerHTML = "";
-      paywall.classList.remove("show");
-
-      if (income <= 0) {
-        resultDiv.classList.add("show", "danger");
-        resultDiv.innerHTML = "Bitte gib zuerst deine monatlichen Einnahmen ein.";
-        return;
-      }
-
-      if (result < 0) {
-        const yearlyLoss = Math.abs(result) * 12;
-
-        resultDiv.classList.add("show", "danger");
-        resultDiv.innerHTML = `
-          ❌ Du verlierst <strong>${Math.abs(result).toFixed(2)}€</strong> pro Monat
-          <span class="year-loss">→ Das summiert sich auf <strong>${yearlyLoss.toFixed(2)}€</strong> Verlust im Jahr</span>
-        `;
-      } else if (result === 0) {
-        resultDiv.classList.add("show", "danger");
-        resultDiv.innerHTML = `
-          ⚠️ Dir bleibt aktuell genau <strong>0,00€</strong> übrig
-          <span class="year-loss">→ Schon kleine Mehrkosten bringen dich sofort ins Minus</span>
-        `;
-      } else {
-        const yearlyGain = result * 12;
-
-        resultDiv.classList.add("show", "good");
-        resultDiv.innerHTML = `
-          ✅ Dir bleiben aktuell <strong>${result.toFixed(2)}€</strong> übrig
-          <span class="year-gain">→ Das entspricht <strong>${yearlyGain.toFixed(2)}€</strong> im Jahr</span>
-        `;
-      }
-
-      paywall.classList.add("show");
-    }
-  </script>
+  </footer>
 </body>
 </html>
